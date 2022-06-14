@@ -9,7 +9,7 @@ include_directories(
 	"../common"
 	"../dlls"
 	"../public"
-	"../vgui_dll/include"
+	"../vgui-dev/include"
 	"../engine"
 )
 

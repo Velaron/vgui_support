@@ -100,7 +100,7 @@ def build(bld):
 	if bld.env.NO_VGUI:
 		return
 
-	libs = []
+	libs = [ 'sdk_includes' ]
 
 	# basic build: dedicated only, no dependencies
 	if bld.env.DEST_OS != 'win32':
@@ -110,7 +110,7 @@ def build(bld):
 
 	source = bld.path.ant_glob(['*.cpp'])
 
-	includes = [ '.', '../common', '../engine', '../public' ]
+	includes = [ '.' ]
 
 	bld.shlib(
 		source   = source,
@@ -118,7 +118,7 @@ def build(bld):
 		features = 'cxx',
 		includes = includes,
 		use      = libs,
-		rpath    = '.',
+		rpath    = '$ORIGIN',
 		install_path = bld.env.LIBDIR,
 		subsystem = bld.env.MSVC_SUBSYSTEM
 	)

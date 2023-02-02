@@ -9,8 +9,8 @@ include_directories(
 	"../common"
 	"../dlls"
 	"../public"
-	"../vgui-dev/include"
 	"../engine"
+	"vgui-dev/include"
 )
 
 add_definitions(-DINTERNAL_VGUI_SUPPORT -DSTDINT_H="stdint.h")

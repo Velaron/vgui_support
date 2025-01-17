@@ -13,7 +13,7 @@ def options(opt):
 	grp = opt.add_option_group('VGUI options')
 
 	grp.add_option('--disable-vgui', action = 'store_true', dest = 'NO_VGUI', default = False,
-		help = 'disable vgui_support [default: %default]')
+		help = 'disable vgui_support [default: %(default)s]')
 
 	opt.load('vgui')
 
@@ -30,7 +30,7 @@ def build(bld):
 	if bld.env.NO_VGUI:
 		return
 
-	libs = [ 'sdk_includes' ]
+	libs = [ 'sdk_includes', 'werror' ]
 
 	# basic build: dedicated only, no dependencies
 	if bld.env.DEST_OS != 'win32':
@@ -45,10 +45,8 @@ def build(bld):
 	bld.shlib(
 		source   = source,
 		target   = 'vgui_support',
-		features = 'cxx',
 		includes = includes,
 		use      = libs,
 		rpath    = bld.env.DEFAULT_RPATH,
-		install_path = bld.env.LIBDIR,
-		subsystem = bld.env.MSVC_SUBSYSTEM
+		install_path = bld.env.LIBDIR
 	)
